@@ -31,26 +31,27 @@ with open(file_to_load) as election_data:
 
     with open(file_to_save, "w") as txtfile:
 
-        Results = (
+        election_results = (
             f"\nElection Results\n"
             f"---------------------\n"
             f"Total Votes: {total_votes:,}\n"
             f"---------------------\n"
         )
         print(Results)
-        txtfile.write(Results)
+        txtfile.write(election_results)
 
         for candidate in candidate_votes:
             votes = candidate_votes[candidate]
             percentage = float(votes) / float(total_votes) * 100
-            readout = f"{candidate}: {percentage:.1f}% ({votes})\n"
-            # print(readout)
+            candidate_results = f"{candidate}: {percentage:.1f}% ({votes})\n"
+            txtfile.write(candidate_results)
 
             if (votes > win_count) and (percentage > win_percent):
                 win_count = votes
                 win_percent = percentage
                 win_candidate = candidate
         winningsummary = (
+            f"-----------------------\n"
             f"Winner: {win_candidate}\n"
             f"Winning vote Count: {win_count}\n"
             f"Winning Percentage: {win_percent:.1f}%\n"
