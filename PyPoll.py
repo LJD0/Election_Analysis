@@ -26,5 +26,8 @@ with open(file_to_load) as election_data:
             candidate_votes[candidate_name] = 0
         candidate_votes[candidate_name] += 1
 
+    for candidate in candidate_votes:
+        votes = candidate_votes[candidate]
+        percentage = round((float(votes) / float(total_votes)) * 100, 1)
 
-print(candidate_votes)
+        print(f"{candidate}: received {percentage} of the vote")
