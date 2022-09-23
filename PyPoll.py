@@ -70,15 +70,16 @@ with open(file_to_load) as election_data:
             f"---------------------\n"
             f"Total Votes: {total_votes:,}\n"
             f"---------------------\n"
+            f"\nCounty Votes:\n"
         )
-        print(election_results, end="")
-
+        print(election_results)
         txtfile.write(election_results)
 
         for county in county_votes:
             cvotes = county_votes[county]
             cpercent = float(cvotes) / float(total_votes) * 100
             county_result = f"{county}: {cpercent:.1f}% ({cvotes})\n"
+
             print(county_result)
             txtfile.write(county_result)
 
@@ -87,13 +88,13 @@ with open(file_to_load) as election_data:
                 win_county_percent = cpercent
                 win_county = county
         county_win_summary = (
-            f"-----------------------\n"
-            f"County with highest number of votes: {win_county}\n"
-            f"Highest County Vote Count: {win_county_votes}\n"
-            f"Percentage of total vote: {win_county_percent:.1f}%\n"
+            f"\n-----------------------\n"
+            f"Largest County Turnout: {win_county}\n"
             f"-----------------------------\n"
         )
-        txtfile.write("---------------\n")
+        print(county_win_summary)
+        txtfile.write(county_win_summary)
+
         for candidate in candidate_votes:
             votes = candidate_votes[candidate]
             percentage = float(votes) / float(total_votes) * 100
@@ -113,6 +114,4 @@ with open(file_to_load) as election_data:
             f"-----------------------------\n"
         )
         print(winningsummary)
-        print(county_win_summary)
         txtfile.write(winningsummary)
-        txtfile.write(county_win_summary)
