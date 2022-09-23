@@ -9,6 +9,9 @@ file_to_save = Path(
     "/Users/jeremy/Docs/School/Mod 3 PyPoll/Election_Analysis/analysis/election_analysis.txt"
 )
 
+# Couldnt get OS path to run on my computer. Found alternative to os.path with Path() imported from pathlib.
+# I left the OS versions of the files in my code to show that I did enter what was expected, it just wasn't working
+
 OS_File = os.path.join(
     "Users",
     "jeremy",
@@ -83,7 +86,14 @@ with open(file_to_load) as election_data:
                 win_county_votes = cvotes
                 win_county_percent = cpercent
                 win_county = county
-
+        county_win_summary = (
+            f"-----------------------\n"
+            f"County with highest number of votes: {win_county}\n"
+            f"Highest County Vote Count: {win_county_votes}\n"
+            f"Percentage of total vote: {win_county_percent:.1f}%\n"
+            f"-----------------------------\n"
+        )
+        txtfile.write("---------------\n")
         for candidate in candidate_votes:
             votes = candidate_votes[candidate]
             percentage = float(votes) / float(total_votes) * 100
@@ -103,4 +113,6 @@ with open(file_to_load) as election_data:
             f"-----------------------------\n"
         )
         print(winningsummary)
+        print(county_win_summary)
         txtfile.write(winningsummary)
+        txtfile.write(county_win_summary)
