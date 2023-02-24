@@ -1,4 +1,4 @@
-# Election Analysis for Module 3 of OSU
+# Election Analysis
 
         Using Python to analyze the results of an election using a csv file.
 
